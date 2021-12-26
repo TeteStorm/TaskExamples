@@ -10,19 +10,19 @@ namespace TaskExamples
         public int Number { get; set; }
 
         [Benchmark]
-        public Task<int> AddAsyncTask()
+        public Task<int> CalcAsyncTask()
         {
             return Task.Run(() => this.Number * this.Number);
         }
 
         [Benchmark]
-        public Task<int> AddAsyncTaskFromResult()
+        public Task<int> CalcAsyncTaskFromResult()
         {
             return Task.FromResult(this.Number * this.Number);
         }
 
         [Benchmark]
-        public ValueTask<int> AddAsyncValueTask()
+        public ValueTask<int> CalcAsyncValueTask()
         {
             return new ValueTask<int>(this.Number * this.Number);
         }
