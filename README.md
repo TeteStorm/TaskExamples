@@ -12,7 +12,7 @@ This example wastes a thread-pool thread to return a trivially computed value.
 ```C#
 public class Tasks
 {
-   public Task<int> AddAsync(int a, int b)
+   public Task<int> CalcAsync(int a, int b)
    {
        return Task.Run(() => a * b);
    }
@@ -26,7 +26,7 @@ This example uses `Task.FromResult` to return the trivially computed value. It d
 ```C#
 public class Tasks
 {
-   public Task<int> AddAsync(int a, int b)
+   public Task<int> CalcAsync(int a, int b)
    {
        return Task.FromResult(a * b);
    }
@@ -40,7 +40,7 @@ It does not use any extra threads as a result and also does not allocate an obje
 ```C#
 public class Tasks
 {
-   public ValueTask<int> AddAsync(int a, int b)
+   public ValueTask<int> CalcAsync(int a, int b)
    {
        return new ValueTask<int>(a * b);
    }
