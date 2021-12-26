@@ -1,6 +1,6 @@
 # Task Examples
 Task benchmark for pre-computed/trivially computed data
-## `Task.FromResult`,`Task.Run`, `ValueTask` benchmark comparation for pre-computed or trivially computed data
+#### `Task.FromResult`,`Task.Run` and `ValueTask` benchmark comparation for pre-computed or trivially computed data
 
 :-1: `Task.Run` 
 
@@ -12,7 +12,7 @@ This example wastes a thread-pool thread to return a trivially computed value.
 ```C#
 public class Tasks
 {
-   public Task<int> AddAsync(int a, int b)
+   public Task<int> CalcAsync(int a, int b)
    {
        return Task.Run(() => a * b);
    }
@@ -26,7 +26,7 @@ This example uses `Task.FromResult` to return the trivially computed value. It d
 ```C#
 public class Tasks
 {
-   public Task<int> AddAsync(int a, int b)
+   public Task<int> CalcAsync(int a, int b)
    {
        return Task.FromResult(a * b);
    }
@@ -40,29 +40,19 @@ It does not use any extra threads as a result and also does not allocate an obje
 ```C#
 public class Tasks
 {
-   public ValueTask<int> AddAsync(int a, int b)
+   public ValueTask<int> CalcAsync(int a, int b)
    {
        return new ValueTask<int>(a * b);
    }
 }
 ```
+## Benchmark results
+
+A benchmark is a set of measurements related to the performance of a piece of code in an application and can helps you to identify portions of code that need be refactoring. 
+Is essential  understanding the performance metrics of the methods in your application and it is always a good approach to have the metrics at hand when you’re optimizing code. Also it is very important for us to know if the changes made in the code has improved or worsened the performance. 
+
+![image](https://user-images.githubusercontent.com/8992182/147397635-15d874fa-7195-4689-a035-9c18edbd2a18.png)
 
 
-
-``` ini
-
-BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19043.1415 (21H1/May2021Update)
-Intel Core i7-7500U CPU 2.70GHz (Kaby Lake), 1 CPU, 4 logical and 2 physical cores
-.NET SDK=5.0.404
-  [Host]     : .NET 5.0.13 (5.0.1321.56516), X64 RyuJIT  [AttachedDebugger]
-  DefaultJob : .NET 5.0.13 (5.0.1321.56516), X64 RyuJIT
-
-
-```
-|                 Method | Number |       Mean |     Error |    StdDev |  Gen 0 | Allocated |
-|----------------------- |------- |-----------:|----------:|----------:|-------:|----------:|
-|           AddAsyncTask |     10 | 815.937 ns | 8.0298 ns | 7.5111 ns | 0.0639 |     136 B |
-| AddAsyncTaskFromResult |     10 |   8.337 ns | 0.2016 ns | 0.4340 ns | 0.0344 |      72 B |
-|      AddAsyncValueTask |     10 |   9.734 ns | 0.1344 ns | 0.1257 ns |      - |         - |
 
 
