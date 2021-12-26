@@ -1,6 +1,6 @@
 # Task Examples
-### Task benchmark for pre-computed/trivially computed data
-## `Task.FromResult`,`Task.Run` and `ValueTask` benchmark comparation for pre-computed or trivially computed data
+Task benchmark for pre-computed/trivially computed data
+#### `Task.FromResult`,`Task.Run` and `ValueTask` benchmark comparation for pre-computed or trivially computed data
 
 :-1: `Task.Run` 
 
@@ -49,7 +49,7 @@ public class Tasks
 ## Benchmark results
 
 A benchmark is a set of measurements related to the performance of a piece of code in an application and can helps you to identify portions of code that need be refactoring. 
-It is essential to understanding the performance metrics of the methods in your application. It is always a good approach to have the metrics at hand when you’re optimizing code. It is very important for us to know if the changes made in the code has improved or worsened the performance. 
+Is essential  understanding the performance metrics of the methods in your application and it is always a good approach to have the metrics at hand when you’re optimizing code. Also it is very important for us to know if the changes made in the code has improved or worsened the performance. 
 
 ![image](https://user-images.githubusercontent.com/8992182/147397635-15d874fa-7195-4689-a035-9c18edbd2a18.png)
 
